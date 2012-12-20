@@ -1,0 +1,50 @@
+.MainView p {
+    width: 825px;
+}
+
+#backupForm #create-backup-option {
+    margin-bottom: 5px;
+}
+
+#RestoreOptions, #file_directory {
+    display: none;
+}
+
+#file_directory {
+    background: url('../images/folder.png') no-repeat;
+    min-height: 30px;
+    padding: 5px 0 0 35px
+}
+
+#file_directory ul {
+    list-style: none;
+    margin: 0 0 0 20px;
+    padding-left: 20px;
+}
+
+#file_directory li {
+    min-height: 30px;
+    margin: 1px 0;
+    padding: 5px 0 0 30px;
+    position: relative;
+}
+
+#file_directory input[type=checkbox] {
+    float: left;
+}
+
+#file_directory span.parent {
+    cursor: pointer;
+}
+
+#file_directory .folder {
+    background: url('../images/folder.png') no-repeat;
+}
+
+#file_directory .file {
+    background: url('../images/file.png') no-repeat;
+}
+
+div.try .restore-backup-options {
+    display: block;
+}
