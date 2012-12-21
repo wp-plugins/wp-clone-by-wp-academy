@@ -18,9 +18,9 @@ WP Clone is the easiest, fastest and most secure way to move or copy a WordPress
 
 WP Clone is a superior solution to even commercial WordPress cloning plugins for the following reasons: 
 
-* Does not require FTP access to either the source or destination site — just install a new WordPress on the destination site, upload and activate WP Clone plugin, and follow the prompts
-* It does not backup or restore the WordPress system files (just the user content and database) — reducing upload time and improving security of your site
-* It fetches the site backup via your host’s direct http connection, which saves you from needing to upload large files through your internet connection
+* Does not require FTP access to either the source or destination site - just install a new WordPress on the destination site, upload and activate WP Clone plugin, and follow the prompts
+* It does not backup or restore the WordPress system files (just the user content and database) - reducing upload time and improving security of your site
+* It fetches the site backup via your host's direct http connection, which saves you from needing to upload large files through your internet connection
 * It uses the WordPress internal zip archive function, which makes it compatible with virtually 100% of hosts that support WordPress (no special PHP libraries are required)
 
 = Help Video =
