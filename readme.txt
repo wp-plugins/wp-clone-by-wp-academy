@@ -6,7 +6,7 @@ Author URI: http://wpacademy.com
 Plugin URI: http://wpacademy.com/software
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 2.0.9
+Stable tag: 2.06
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,9 +14,10 @@ Move or copy a WordPress site to another server or to another domain name, move 
 
 == Description ==
 
-WP Clone is the easiest, fastest and most secure way to move or copy a WordPress site to another domain or hosting server.  You can also use it to move your site to/from local server hosting, to create copies of your site for development or testing services, to backup your site, and to install pre-configured versions of WordPress.  
+WP Clone is the easiest, fastest and most secure way to move or copy a WordPress site to another domain or hosting server.  You can also use it to move your site to/from local server hosting, to create copies of your site for development or testing purposes, to backup your site, and to install pre-configured versions of WordPress.  
 
 WP Clone is a superior solution to even commercial WordPress cloning plugins for the following reasons: 
+
 * Does not require FTP access to either the source or destination site — just install a new WordPress on the destination site, upload and activate WP Clone plugin, and follow the prompts
 * It does not backup or restore the WordPress system files (just the user content and database) — reducing upload time and improving security of your site
 * It fetches the site backup via your host’s direct http connection, which saves you from needing to upload large files through your internet connection
@@ -26,12 +27,11 @@ WP Clone is a superior solution to even commercial WordPress cloning plugins for
 [youtube http://www.youtube.com/watch?feature=player_embedded&v=dqpv2VjLCSY]
 
 = Please donate to support plugin development & ongoing support =
-WP Clone is provided free of charge to the community and supported through the plugin forums on WordPress.org. Please help defray our development expenses and help with support costs through the 
-[Donations Page] (http://wpacademy.com/software/ “Donations page”)
+WP Clone is provided free of charge to the community and supported through the plugin forums on WordPress.org. Please help defray our development expenses and help with support costs through the [Donations Page](http://wpacademy.com/software "Donations page")
 Donation page.
 
 = Additional documentation =
-Additional documentation, including supported hosts, at the [WP Clone FAQ Page] (http://wpacademy.tv/wpclone-faq "WP Clone FAQ")
+Additional documentation, including supported hosts, at the [WP Clone FAQ Page](http://wpacademy.tv/wpclone-faq "WP Clone FAQ")
 
 = Other contributors =
 WP Clone uses functions from the "Safe Search and Replace on Database with Serialized Data" script first written by David Coveney of Interconnect IT Ltd (UK) http://www.davidcoveney.com or http://www.interconnectit.com and 
@@ -46,12 +46,9 @@ released under the WTFPL http://sam.zoy.org/wtfpl/. Partial script with full cha
 4. Follow remaining instructions in the help video
 
 == Frequently Asked Questions ==
-Review FAQ's and Help Video at the [WP Clone FAQ Page] (http://wpacademy.tv/wpclone-faq "WP Clone FAQ")
+Review FAQ's and Help Video at the [WP Clone FAQ Page](http://wpacademy.tv/wpclone-faq "WP Clone FAQ")
 
 == Changelog ==
-= 2.0.9 - 2012-12-19 =
-* Replaced internal jquery with wp_enqueue_script()
-
 = 2.0.6 - 2012-08-05 =
 * Added: WP Filesystem integration
 * Added: Alternate zip method for better compatibility with hosts that haven't enabled PHP's zip extension
@@ -64,4 +61,3 @@ Review FAQ's and Help Video at the [WP Clone FAQ Page] (http://wpacademy.tv/wpcl
 
 = 2.0.2 -	2012-04-12 =
 * Initial release
-
