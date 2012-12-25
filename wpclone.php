@@ -4,7 +4,7 @@ Plugin name: WP Clone by WP Academy
 Plugin URI: http://wpacademy.com/software/
 Description: Move or copy a WordPress site to another server or to another domain name, move to/from local server hosting, and backup sites.
 Author: WP Academy
-Version: 2.0.9
+Version: 2.1
 Author URI: http://wpacademy.com/
 */
 

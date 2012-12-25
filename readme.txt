@@ -6,7 +6,7 @@ Author URI: http://wpacademy.com
 Plugin URI: http://wpacademy.com/software
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 2.0.9
+Stable tag: 2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -49,6 +49,9 @@ released under the WTFPL http://sam.zoy.org/wtfpl/. Partial script with full cha
 Review FAQ's and Help Video at the [WP Clone FAQ Page](http://wpacademy.tv/wpclone-faq "WP Clone FAQ")
 
 == Changelog ==
+= 2.1 - 2012-12-25 =
+*Added: WP Academy sidebar.
+
 = 2.0.6 - 2012-08-05 =
 * Added: WP Filesystem integration
 * Added: Alternate zip method for better compatibility with hosts that haven't enabled PHP's zip extension
