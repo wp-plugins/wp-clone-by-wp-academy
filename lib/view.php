@@ -94,7 +94,7 @@ $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}wpclone ORDER BY id D
 
         <?php endif ?>
 
-        <strong>Restore from URl:</strong><input id="backupUrl" name="backupUrl" type="radio" value="backupUrl"/>
+        <strong>Restore from URL:</strong><input id="backupUrl" name="backupUrl" type="radio" value="backupUrl"/>
 
         <input type="text" name="restore_from_url" class="Url" value="" size="80px"/><br/><br/>
 
