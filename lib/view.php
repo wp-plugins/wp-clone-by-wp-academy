@@ -1,27 +1,29 @@
 <script type="text/javascript">
-	
-	jQuery(function($) {
-	
-        $(".copy-button").zclip({
-            path: "<?php echo WPCLONE_URL_PLUGIN ?>lib/js/ZeroClipboard.swf",
-            copy: function(){
-                return $(this).prev().val();
-            }
-        });
-        $('a#copy-description').zclip({
-            path:'<?php echo WPCLONE_URL_PLUGIN ?>lib/js/ZeroClipboard.swf',
-            copy:$('p#description').text()
-        });
+	jQuery ( function($) {
+		
+		ZeroClipboard.setDefaults( { moviePath: '<?php echo WPCLONE_URL_PLUGIN ?>lib/js/zeroclipboard.swf' } );
+		
+		/** workaround for firefox versions 18 and 19.
+			https://bugzilla.mozilla.org/show_bug.cgi?id=829557
+			https://github.com/jonrohan/ZeroClipboard/issues/73
+		*/
+		var enableZC = true;
+		var is_firefox18 = navigator.userAgent.toLowerCase().indexOf('firefox/18') > -1;
+		var is_firefox19 = navigator.userAgent.toLowerCase().indexOf('firefox/19') > -1;
+		if (is_firefox18 || is_firefox19) enableZC = false;
+		
+		
+		$( ".restore-backup-options" ).each( function() {
+			var clip = new ZeroClipboard( $( "a.copy-button",this ) );
+			/** FF 18/19 users won't see an alert box. */
+			if (enableZC) {
+				clip.on( 'complete', function (client, args) {
+					alert( "Copied to clipboard:\n" + args.text );
+				});
+			}
+		});
+	});
 
-        $('a#copy-dynamic').zclip({
-            path:'<?php echo WPCLONE_URL_PLUGIN ?>lib/js/ZeroClipboard.swf',
-            copy:function(){
-                return $('input#dynamic').val();
-            }
-        });
-
-    });
-	
 </script>
 
 <?php
@@ -46,6 +48,8 @@ $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}wpclone ORDER BY id D
         would like to restore.</p>
 
     <p>&nbsp;</p>
+	
+	<p>Please note that you will not see an alert box after clicking on the "Copy URL" link if you're using Firefox version 18 or 19.</p>
 
     <form id="backupForm" name="backupForm" action="#" method="post">
 <?php 
@@ -78,13 +82,13 @@ $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}wpclone ORDER BY id D
                 <input class="restoreBackup" name="restoreBackup" type="radio"
                        value="<?php echo $filename ?>" />&nbsp;
 
-                <a href="<?php echo $filename ?>">
+                <a href="<?php echo $filename ?>" class="zclip">
                     (&nbsp;<?php echo bytesToSize($row['backup_size']);?>&nbsp;)&nbsp; <?php echo $row['backup_name'] ?>
                 </a>&nbsp;|&nbsp;
 
                 <input type="hidden" name="backup_name" value="<?php echo $filename ?>" />
 
-                <a class="copy-button" href="#">Copy URL</a> &nbsp;|&nbsp;
+                <a class="copy-button" href="#" data-clipboard-text="<?php echo $filename ?>" >Copy URL</a> &nbsp;|&nbsp;
                 <a href="<?php echo $url; ?>">Delete</a>
             </div>
 
@@ -107,17 +111,7 @@ $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}wpclone ORDER BY id D
             2. Your current site at <strong>[<?php echo site_url() ?>]</strong> may become unusable in case of failure,
             and you will need to re-install WordPress<br/>
 
-            <?php
-
-            require_once(WPCLONE_ROOT . "wp-config.php");
-
-            $dbInfo = getDbInfo(get_defined_vars());
-
-            ?>
-
-            3. Your WordPress database <strong>[<?php if (isset($dbInfo['dbname'])) {
-            echo $dbInfo['dbname'];
-        }?>]</strong> will be overwritten from the database in the backup file. <br/>
+            3. Your WordPress database <strong>[<?php echo DB_NAME; ?>]</strong> will be overwritten from the database in the backup file. <br/>
 
         </div>
 
@@ -139,8 +133,8 @@ $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}wpclone ORDER BY id D
 			<h2>WP Academy News</h2>
 			<h3>WPAcademy.com</h3>			
 			<?php wpa_fetch_feed ('http://wpacademy.com/feed', 3); ?>
-			<h3>Twitter @wpacademytv</h3>			
-			<?php wpa_fetch_feed ('http://api.twitter.com/1/statuses/user_timeline.rss?screen_name=wpacademytv', 5); ?>
+			<h3>Twitter @wpacademy</h3>			
+			<?php wpa_fetch_feed ('http://api.twitter.com/1/statuses/user_timeline.rss?screen_name=wpacademy', 5); ?>
 		</ul>
 		
 		<ul>
@@ -169,13 +163,14 @@ $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}wpclone ORDER BY id D
         echo 'Backup path : <pre>' . WPCLONE_DIR_BACKUP . '</pre></br>';
         echo 'wp-content path : <pre>' . WPCLONE_WP_CONTENT . '</pre></br>';
         echo 'Site Root : <pre>' . WPCLONE_ROOT . '</pre></br>';
+		echo 'ABSPATH : <pre>' . ABSPATH . '</pre></br>';
         if (!is_writable(WPCLONE_DIR_BACKUP)) { echo '<span style="color:#f11">Cannot write to the backup directory!</span></br>'; }
         if (!is_writable(WPCLONE_ROOT)) { echo '<span style="color:#f11">Cannot write to the root directory!</span></br>'; }
         echo '</div>';
     }
 
 	if(!isset($_GET['mode'])){
-    $link = get_bloginfo('wpurl') . '/wp-admin/admin.php?page=wp-clone&mode=advanced';
+    $link = admin_url( 'admin.php?page=wp-clone&mode=advanced' );
     echo "<p style='padding:5px;'><a href='{$link}' style='margin-top:10px'>Advanced Settings</a></p>";
     }
 
@@ -198,4 +193,4 @@ $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}wpclone ORDER BY id D
 		<?php endforeach;
 	}
 	
-// it all ends here folks.
+/** it all ends here folks. */

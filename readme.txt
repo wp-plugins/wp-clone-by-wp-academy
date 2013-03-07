@@ -6,7 +6,7 @@ Author URI: http://wpacademy.com
 Plugin URI: http://wpacademy.com/software
 Requires at least: 3.0
 Tested up to: 3.5.1
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -49,6 +49,9 @@ released under the WTFPL http://sam.zoy.org/wtfpl/. Partial script with full cha
 Review FAQ's and Help Video at the [WP Clone FAQ Page](http://wpacademy.tv/wpclone-faq "WP Clone FAQ")
 
 == Changelog ==
+= 2.1.2 - 2013-03-07 =
+* Fixed: An XSS vulnerability caused by an older version of the ZeroClipboard library.
+
 = 2.1.1 - 2013-02-16 =
 * Fixed: a missing nonce action which was causing a wp_nonce_ays loop on some hosts.
 * Fixed: a couple of UI issues.

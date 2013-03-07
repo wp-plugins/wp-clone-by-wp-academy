@@ -4,7 +4,7 @@ Plugin name: WP Clone by WP Academy
 Plugin URI: http://wpacademy.com/software/
 Description: Move or copy a WordPress site to another server or to another domain name, move to/from local server hosting, and backup sites.
 Author: WP Academy
-Version: 2.1.1
+Version: 2.1.2
 Author URI: http://wpacademy.com/
 */
 
@@ -14,16 +14,12 @@ include_once 'lib/DirectoryTree.php';
 
 $upload_dir = wp_upload_dir();
 
-define('WPBACKUP_VERSION', '1.0.0');
-define('WPBACKUP_DB_VERSION', '1.0.0');
-define('WPBACKUP_REQUIRED_WP_VERSION', '3.0');
 define('WPBACKUP_FILE_PERMISSION', 0755);
 define('WPCLONE_ROOT',  rtrim(str_replace("\\", "/", ABSPATH), "/\\") . '/');
 define('WPCLONE_BACKUP_FOLDER',  'wp-clone');
 define('WPCLONE_DIR_UPLOADS',  str_replace('\\', '/', $upload_dir['basedir']));
 define('WPCLONE_DIR_PLUGIN', str_replace('\\', '/', plugin_dir_path(__FILE__)));
 define('WPCLONE_URL_PLUGIN', plugin_dir_url(__FILE__));
-define('WPCLONE_DIR_CONFIG',  WPCLONE_ROOT.'wp-content/uploads/conf/');
 define('WPCLONE_DIR_BACKUP',  WPCLONE_DIR_UPLOADS . '/' .WPCLONE_BACKUP_FOLDER . '/');
 define('WPCLONE_INSTALLER_PATH', WPCLONE_DIR_PLUGIN);
 define('WPCLONE_WP_CONTENT' , str_replace('\\', '/', WP_CONTENT_DIR));
@@ -50,7 +46,7 @@ function wpclone_plugin_options() {
 }
 
 function wpa_enqueue_scripts(){
-    wp_register_script('jquery-zclip', plugin_dir_url(__FILE__) . '/lib/js/jquery.zclip.min.js', array('jquery'));
+    wp_register_script('jquery-zclip', plugin_dir_url(__FILE__) . '/lib/js/zeroclipboard.min.js', array('jquery'));
     wp_register_script('wpclone', plugin_dir_url(__FILE__) . '/lib/js/backupmanager.js', array('jquery'));
     wp_register_style('wpclone', plugin_dir_url(__FILE__) . '/lib/css/style.css');
     wp_enqueue_script('jquery-zclip');
@@ -87,7 +83,6 @@ function wpa_create_directory() {
                 die("Unable to create directory '" . rtrim(WPCLONE_DIR_BACKUP, "/\\"). "'. Please set 0755 permission to wp-content.");
             }
         }
-        mkdir(WPCLONE_DIR_CONFIG, WPBACKUP_FILE_PERMISSION);
         $handle = fopen($indexFile, "w");
         fclose($handle);
     }
