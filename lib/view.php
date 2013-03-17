@@ -1,28 +1,37 @@
 <script type="text/javascript">
-	jQuery ( function($) {
-		
-		ZeroClipboard.setDefaults( { moviePath: '<?php echo WPCLONE_URL_PLUGIN ?>lib/js/zeroclipboard.swf' } );
-		
-		/** workaround for firefox versions 18 and 19.
-			https://bugzilla.mozilla.org/show_bug.cgi?id=829557
-			https://github.com/jonrohan/ZeroClipboard/issues/73
-		*/
-		var enableZC = true;
-		var is_firefox18 = navigator.userAgent.toLowerCase().indexOf('firefox/18') > -1;
-		var is_firefox19 = navigator.userAgent.toLowerCase().indexOf('firefox/19') > -1;
-		if (is_firefox18 || is_firefox19) enableZC = false;
-		
-		
-		$( ".restore-backup-options" ).each( function() {
-			var clip = new ZeroClipboard( $( "a.copy-button",this ) );
-			/** FF 18/19 users won't see an alert box. */
-			if (enableZC) {
-				clip.on( 'complete', function (client, args) {
-					alert( "Copied to clipboard:\n" + args.text );
-				});
-			}
-		});
-	});
+    jQuery ( function($) {
+
+        ZeroClipboard.setDefaults( { moviePath: '<?php echo WPCLONE_URL_PLUGIN ?>lib/js/ZeroClipboard.swf' } );
+
+        /**workaround for firefox versions 18 and 19.
+           https://bugzilla.mozilla.org/show_bug.cgi?id=829557
+           https://github.com/jonrohan/ZeroClipboard/issues/73
+        */
+        var enableZC = true;
+        var is_firefox18 = navigator.userAgent.toLowerCase().indexOf('firefox/18') > -1;
+        var is_firefox19 = navigator.userAgent.toLowerCase().indexOf('firefox/19') > -1;
+        if (is_firefox18 || is_firefox19) enableZC = false;
+
+        if ( $( ".restore-backup-options" ).length ) {
+            $( ".restore-backup-options" ).each( function() {
+                var clip = new ZeroClipboard( $( "a.copy-button",this ) );
+                /** FF 18/19 users won't see an alert box. */
+                if (enableZC) {
+                    clip.on( 'complete', function (client, args) {
+                        alert( "Copied to clipboard:\n" + args.text );
+                    });
+                }
+            });
+        } else {
+            var clip = new ZeroClipboard( $( "a.copy-button" ) );
+            /** FF 18/19 users won't see an alert box. */
+            if (enableZC) {
+                clip.on( 'complete', function (client, args) {
+                    alert( "Copied to clipboard:\n" + args.text );
+                });
+            }
+        }
+    });
 
 </script>
 
@@ -57,6 +66,7 @@ $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}wpclone ORDER BY id D
         <div class="info">
             <table>
                 <tr align="left"><th><label for="zipmode">Alternate zip method</label></th><td colspan="2"><input type="checkbox" name="zipmode" value="alt" /></td></tr>
+                <tr align="left"><th><label for="use_wpdb">Use wpdb to backup the database</label></th><td colspan="2"><input type="checkbox" name="use_wpdb" value="true" /></td></tr>
                 <tr align="left"><th><label for="maxmem">Maximum memory limit</label></th><td colspan="2"><input type="text" name="maxmem" /></td></tr>
                 <tr align="left"><th><label for="maxexec">Script execution time</label></th><td><input type="text" name="maxexec" /></td></tr>
             </table>
@@ -165,7 +175,7 @@ $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}wpclone ORDER BY id D
         echo 'Site Root : <pre>' . WPCLONE_ROOT . '</pre></br>';
 		echo 'ABSPATH : <pre>' . ABSPATH . '</pre></br>';
         if (!is_writable(WPCLONE_DIR_BACKUP)) { echo '<span style="color:#f11">Cannot write to the backup directory!</span></br>'; }
-        if (!is_writable(WPCLONE_ROOT)) { echo '<span style="color:#f11">Cannot write to the root directory!</span></br>'; }
+        if (!is_writable(WPCLONE_WP_CONTENT)) { echo '<span style="color:#f11">Cannot write to the root directory!</span></br>'; }
         echo '</div>';
     }
 
@@ -181,7 +191,7 @@ $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}wpclone ORDER BY id D
 			$maxitems = $rss->get_item_quantity($limit);
 			$rss_items = $rss->get_items(0, $maxitems); 
 		endif;
-		if ($maxitems == 0) echo '<li>No items.</li>';
+		if ( isset($maxitems) && $maxitems == 0 ) echo '<li>No items.</li>';
 		else
 		// Loop through each feed item and display each item as a hyperlink.
 		foreach ( $rss_items as $item ) : ?>

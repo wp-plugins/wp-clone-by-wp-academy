@@ -4,13 +4,11 @@ Plugin name: WP Clone by WP Academy
 Plugin URI: http://wpacademy.com/software/
 Description: Move or copy a WordPress site to another server or to another domain name, move to/from local server hosting, and backup sites.
 Author: WP Academy
-Version: 2.1.2
+Version: 2.1.3
 Author URI: http://wpacademy.com/
 */
 
-include_once 'lib/class.php';
 include_once 'lib/functions.php';
-include_once 'lib/DirectoryTree.php';
 
 $upload_dir = wp_upload_dir();
 
@@ -25,7 +23,7 @@ define('WPCLONE_INSTALLER_PATH', WPCLONE_DIR_PLUGIN);
 define('WPCLONE_WP_CONTENT' , str_replace('\\', '/', WP_CONTENT_DIR));
 
 
-// Init options & tables during activation & deregister init option
+/* Init options & tables during activation & deregister init option */
 
 register_activation_hook((__FILE__), 'wpa_wpclone_activate');
 register_deactivation_hook(__FILE__ , 'wpa_wpclone_deactivate');
@@ -56,10 +54,8 @@ function wpa_enqueue_scripts(){
 if( isset($_GET['page']) && 'wp-clone' == $_GET['page'] ) add_action('admin_enqueue_scripts', 'wpa_enqueue_scripts');
 
 function wpa_wpclone_activate() {
-    global $wpdb;
     wpa_create_directory();
     wpa_install_database();
-    if (file_exists(WPCLONE_DIR_BACKUP . '.htaccess')) { unlink (WPCLONE_DIR_BACKUP . '.htaccess'); }
 }
 
 function wpa_wpclone_deactivate() {
@@ -74,9 +70,9 @@ function wpa_wpclone_deactivate() {
 
 
 function wpa_create_directory() {
-    $upload_dir = wp_upload_dir();
     $indexFile = (WPCLONE_DIR_BACKUP.'index.html');
-    $directoryPath = "wp-clone";
+    $htacc = WPCLONE_DIR_BACKUP . '.htaccess';
+    $htacc_data = "Options All -Indexes";
     if (!file_exists($indexFile)) {
         if(!file_exists(WPCLONE_DIR_BACKUP)) {
             if(!mkdir(WPCLONE_DIR_BACKUP, WPBACKUP_FILE_PERMISSION)) {
@@ -86,6 +82,7 @@ function wpa_create_directory() {
         $handle = fopen($indexFile, "w");
         fclose($handle);
     }
+    file_put_contents($htacc, $htacc_data);
 }
 
 function wpa_install_database() {
@@ -100,7 +97,7 @@ function wpa_install_database() {
             $charset_collate .= " COLLATE $wpdb->collate";
     }
     $wp_backup = $wpdb->prefix . 'wpclone';
-    // could be case senstive : http://dev.mysql.com/doc/refman/5.1/en/identifier-case-sensitivity.html
+    /* could be case senstive : http://dev.mysql.com/doc/refman/5.1/en/identifier-case-sensitivity.html */
     if( !$wpdb->get_var( "SHOW TABLES LIKE '{$wp_backup}'" ) ) {
         $sql = "CREATE TABLE {$wp_backup} (
                 id BIGINT(20)  UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
