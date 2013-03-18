@@ -38,7 +38,6 @@
 <?php
 if (wpa_wpfs_init()) return;
 global $wpdb;
-
 $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}wpclone ORDER BY id DESC", ARRAY_A);
 
 ?>
@@ -75,7 +74,7 @@ $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}wpclone ORDER BY id D
 }
 ?>        
         <strong>Create Backup</strong>
-        <input id="createBackup" name="createBackup" type="radio" value="fullBackup"/><br/><br/>
+        <input id="createBackup" name="createBackup" type="radio" value="fullBackup" checked="checked"/><br/><br/>
 
         <?php if (count($result) > 0) : ?>
 

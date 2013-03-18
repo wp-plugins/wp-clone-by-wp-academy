@@ -6,7 +6,7 @@ Author URI: http://wpacademy.com
 Plugin URI: http://wpacademy.com/software
 Requires at least: 3.0
 Tested up to: 3.5.1
-Stable tag: 2.1.3
+Stable tag: 2.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -49,6 +49,10 @@ released under the WTFPL http://sam.zoy.org/wtfpl/. Partial script with full cha
 Review FAQ's and Help Video at the [WP Clone FAQ Page](http://wpacademy.tv/wpclone-faq "WP Clone FAQ")
 
 == Changelog ==
+= 2.1.4 - 2013-03-18 =
+* Fixed: When javascript is disabled,submit button shows "Create Backup" but the plugin attempts to do a restore.
+* Changed: The temporary directory location during the restore process from '/wp-content/' to '/wp-content/wpclone-temp/'.
+
 = 2.1.3 - 2013-03-17 =
 * Fixed: The 'copy' link in the 'backup successful' screen which stopped working after the 2.1.2 update.
 * Added: An option to backup the database using WordPress' WPDB class.
