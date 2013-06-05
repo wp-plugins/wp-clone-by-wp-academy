@@ -132,24 +132,27 @@ $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}wpclone ORDER BY id D
 
 		<ul>
 			<h2>WP Academy Resources</h2>
-			<li><a href="http://wpacademy.tv/ww3.htm" title="WP Encyclopedia">Free WP Encyclopedia</a></li>
-			<li><a href="http://wpacademy.com" title="WP Live">WP Live</a></li>
-			<li><a href="http://wpacademy.com/software#rtmp" title="RTMP Player Plugin">RTMP Player</a></li>
-			<li><a href="http://wpacademy.tv/host" title="Managed WordPress Hosting">Managed WordPress Hosting</a></li>
+			<li><a href="http://members.wpacademy.com/ww3.htm" target="_blank" title="WP Encyclopedia">Free WP Encyclopedia</a></li>
+			<li><a href="http://www.wpacademy.com/wordpress-training" target="_blank" title="WP Live">WP Live</a></li>
+			<li><a href="http://wpacademy.com/software#rtmp" target="_blank" title="RTMP Player Plugin">RTMP Player</a></li>
+			<li><a href="http://www.wpacademy.com/hosting" target="_blank" title="Managed WordPress Hosting">Managed WordPress Hosting</a></li>
 		</ul>
 		
 		<ul>
 			<h2>WP Academy News</h2>
 			<h3>WPAcademy.com</h3>			
-			<?php wpa_fetch_feed ('http://wpacademy.com/feed', 3); ?>
-			<h3>Twitter @wpacademy</h3>			
-			<?php wpa_fetch_feed ('http://api.twitter.com/1/statuses/user_timeline.rss?screen_name=wpacademy', 5); ?>
+			<?php wpa_fetch_feed ('http://members.wpacademy.com/feed', 3); ?>
+			<h3>Twitter @WPAcademy</h3>
+			<?php /* wpa_fetch_feed ('http://api.twitter.com/1/statuses/user_timeline.rss?screen_name=wpacademy', 5); */ ?>
+			<a class="twitter-timeline"  data-tweet-limit="5" height="400" href="https://twitter.com/WPAcademy"  data-widget-id="342116561412304898">Tweets by @WPAcademy</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
 		</ul>
 		
 		<ul>
 			<h2>Help & Support</h2>
-			<li><a href="http://wpacademy.tv/wpclone-faq" title="WP Clone FAQ">Visit the WP Clone FAQ Page</a></li>
-			<li><a href="http://wordpress.org/support/plugin/wp-clone-by-wp-academy" title="Support Forum">Support forum at WordPress.org</a></li>
+			<li><a href="http://members.wpacademy.com/wpclone-faq" target="_blank" title="WP Clone FAQ">Visit the WP Clone FAQ Page</a></li>
+			<li><a href="http://wordpress.org/support/plugin/wp-clone-by-wp-academy" target="_blank" title="Support Forum">Support forum at WordPress.org</a></li>
 		</ul>
     
 	</div>

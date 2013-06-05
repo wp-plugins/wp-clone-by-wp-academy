@@ -6,7 +6,7 @@ Author URI: http://wpacademy.com
 Plugin URI: http://wpacademy.com/software
 Requires at least: 3.0
 Tested up to: 3.5.1
-Stable tag: 2.1.4
+Stable tag: 2.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,14 +24,14 @@ WP Clone is a superior solution to even commercial WordPress cloning plugins for
 * It uses the WordPress internal zip archive function, which makes it compatible with virtually 100% of hosts that support WordPress (no special PHP libraries are required)
 
 = Help Video =
-[youtube http://www.youtube.com/watch?feature=player_embedded&v=dqpv2VjLCSY]
+[youtube http://www.youtube.com/watch?v=xN5Ffhyn4Ao]
 
 = Please donate to support plugin development & ongoing support =
 WP Clone is provided free of charge to the community and supported through the plugin forums on WordPress.org. Please help defray our development expenses and help with support costs through the [Donations Page](http://wpacademy.com/software "Donations page")
 Donation page.
 
 = Additional documentation =
-Additional documentation, including supported hosts, at the [WP Clone FAQ Page](http://wpacademy.tv/wpclone-faq "WP Clone FAQ")
+Additional documentation, including supported hosts, at the [WP Clone FAQ Page](http://members.wpacademy.com/wpclone-faq "WP Clone FAQ")
 
 = Other contributors =
 WP Clone uses functions from the "Safe Search and Replace on Database with Serialized Data" script first written by David Coveney of Interconnect IT Ltd (UK) http://www.davidcoveney.com or http://www.interconnectit.com and 
@@ -46,9 +46,13 @@ released under the WTFPL http://sam.zoy.org/wtfpl/. Partial script with full cha
 4. Follow remaining instructions in the help video
 
 == Frequently Asked Questions ==
-Review FAQ's and Help Video at the [WP Clone FAQ Page](http://wpacademy.tv/wpclone-faq "WP Clone FAQ")
+Review FAQ's and Help Video at the [WP Clone FAQ Page](http://members.wpacademy.com/wpclone-faq "WP Clone FAQ")
 
 == Changelog ==
+= 2.1.5 - 2013-06-05 =
+* Changed: UI Twitter feed from rss to the official twitter widget.
+* Changed: UI Sidebar link attributes.
+
 = 2.1.4 - 2013-03-18 =
 * Fixed: When javascript is disabled,submit button shows "Create Backup" but the plugin attempts to do a restore.
 * Changed: The temporary directory location during the restore process from '/wp-content/' to '/wp-content/wpclone-temp/'.
