@@ -4,7 +4,7 @@ Plugin name: WP Clone by WP Academy
 Plugin URI: http://wpacademy.com/software/
 Description: Move or copy a WordPress site to another server or to another domain name, move to/from local server hosting, and backup sites.
 Author: WP Academy
-Version: 2.1.5
+Version: 2.1.6
 Author URI: http://wpacademy.com/
 */
 
@@ -18,7 +18,7 @@ define('WPCLONE_BACKUP_FOLDER',  'wp-clone');
 define('WPCLONE_DIR_UPLOADS',  str_replace('\\', '/', $upload_dir['basedir']));
 define('WPCLONE_DIR_PLUGIN', str_replace('\\', '/', plugin_dir_path(__FILE__)));
 define('WPCLONE_URL_PLUGIN', plugin_dir_url(__FILE__));
-define('WPCLONE_DIR_BACKUP',  WPCLONE_DIR_UPLOADS . '/' .WPCLONE_BACKUP_FOLDER . '/');
+define('WPCLONE_DIR_BACKUP',  WPCLONE_DIR_UPLOADS . '/' . WPCLONE_BACKUP_FOLDER . '/');
 define('WPCLONE_INSTALLER_PATH', WPCLONE_DIR_PLUGIN);
 define('WPCLONE_WP_CONTENT' , str_replace('\\', '/', WP_CONTENT_DIR));
 
@@ -108,3 +108,12 @@ function wpa_install_database() {
         dbDelta($sql);
     }
 }
+
+function wpa_wpc_msnotice() {
+    echo '<div class="error">';
+    echo '<h4>WP Clone Notice.</h4>';
+    echo '<p>WP Clone is not compatible with multisite installations.</p></div>';
+}
+
+if ( is_multisite() )
+    add_action( 'admin_notices', 'wpa_wpc_msnotice');

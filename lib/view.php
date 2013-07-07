@@ -57,17 +57,22 @@ $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}wpclone ORDER BY id D
 
     <p>&nbsp;</p>
 	
-	<p>Please note that you will not see an alert box after clicking on the "Copy URL" link if you're using Firefox version 18 or 19.</p>
-
     <form id="backupForm" name="backupForm" action="#" method="post">
 <?php 
     if ( isset($_GET['mode']) && 'advanced' == $_GET['mode'] ) { ?>
         <div class="info">
             <table>
-                <tr align="left"><th><label for="zipmode">Alternate zip method</label></th><td colspan="2"><input type="checkbox" name="zipmode" value="alt" /></td></tr>
+                <tr align="left"><th colspan=""><label for="zipmode">Alternate zip method</label></th><td colspan="2"><input type="checkbox" name="zipmode" value="alt" /></td></tr>
                 <tr align="left"><th><label for="use_wpdb">Use wpdb to backup the database</label></th><td colspan="2"><input type="checkbox" name="use_wpdb" value="true" /></td></tr>
                 <tr align="left"><th><label for="maxmem">Maximum memory limit</label></th><td colspan="2"><input type="text" name="maxmem" /></td></tr>
                 <tr align="left"><th><label for="maxexec">Script execution time</label></th><td><input type="text" name="maxexec" /></td></tr>
+                <tr><td colspan="4"><h3>Exclude directories from backup, and backup database only</h3></td></tr>
+                <tr><td colspan="4"><p>Depending on your web host, WP Clone may  not work for large sites.
+                            You may, however, exclude all of your 'wp-content' directory from the backup (use "Backup database only" option below), or exclude specific directories.  
+                            You would then copy these files over to the new site via FTP before restoring the backup with WP Clone.</p></td></tr>
+                <tr align="left"><th><label for="dbonly">Backup database only</label></th><td colspan="2"><input type="checkbox" name="dbonly" value="true" /></td></tr>
+                <tr align="left"><th><label for="exclude">Excluded directories</label></th><td><textarea cols="70" rows="5" name="exclude" ></textarea></td></tr>
+                <tr><th></th><td colspan="5"><p>Enter one per line, i.e.  <code>uploads/backups</code>,use the forward slash <code>/</code> as the directory separator. Directories start at 'wp-content' level.</p></td></tr>
             </table>
         </div>
 <?php
@@ -127,6 +132,12 @@ $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}wpclone ORDER BY id D
         <input id="submit" name="submit" class="btn-primary btn" type="submit" value="Create Backup"/>
         <?php wp_nonce_field('wpclone-submit')?>
     </form>
+    <?php
+        if(!isset($_GET['mode'])){
+            $link = admin_url( 'admin.php?page=wp-clone&mode=advanced' );
+            echo "<p style='padding:5px;'><a href='{$link}' style='margin-top:10px'>Advanced Settings</a></p>";
+        }
+    ?>
 </div>
 <div id="sidebar">
 
@@ -141,10 +152,10 @@ $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}wpclone ORDER BY id D
 		<ul>
 			<h2>WP Academy News</h2>
 			<h3>WPAcademy.com</h3>			
-			<?php wpa_fetch_feed ('http://members.wpacademy.com/feed', 3); ?>
+			<?php wpa_fetch_feed ('http://members.wpacademy.com/category/news/feed', 3); ?>
 			<h3>Twitter @WPAcademy</h3>
 			<?php /* wpa_fetch_feed ('http://api.twitter.com/1/statuses/user_timeline.rss?screen_name=wpacademy', 5); */ ?>
-			<a class="twitter-timeline"  data-tweet-limit="5" height="400" href="https://twitter.com/WPAcademy"  data-widget-id="342116561412304898">Tweets by @WPAcademy</a>
+			<a class="twitter-timeline"  height="400" href="https://twitter.com/WPAcademy"  data-widget-id="342116561412304898">Tweets by @WPAcademy</a>
 			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
 		</ul>
@@ -181,28 +192,23 @@ $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}wpclone ORDER BY id D
         echo '</div>';
     }
 
-	if(!isset($_GET['mode'])){
-    $link = admin_url( 'admin.php?page=wp-clone&mode=advanced' );
-    echo "<p style='padding:5px;'><a href='{$link}' style='margin-top:10px'>Advanced Settings</a></p>";
+    function wpa_fetch_feed ($feed, $limit) {
+        include_once(ABSPATH . WPINC . '/feed.php');
+        $rss = fetch_feed($feed);
+        if (!is_wp_error( $rss ) ) :
+            $maxitems = $rss->get_item_quantity($limit);
+            $rss_items = $rss->get_items(0, $maxitems); 
+        endif;
+        if ( isset($maxitems) && $maxitems == 0 ) echo '<li>No items.</li>';
+        else
+        // Loop through each feed item and display each item as a hyperlink.
+        foreach ( $rss_items as $item ) : ?>
+        <li>
+            <a href='<?php echo esc_url( $item->get_permalink() ); ?>'
+            title='<?php echo 'Posted '.$item->get_date('j F Y | g:i a'); ?>'>
+            <?php echo esc_html( $item->get_title() ); ?></a>
+        </li>
+        <?php endforeach;
     }
-
-	function wpa_fetch_feed ($feed, $limit) {
-		include_once(ABSPATH . WPINC . '/feed.php');
-		$rss = fetch_feed($feed);
-		if (!is_wp_error( $rss ) ) :
-			$maxitems = $rss->get_item_quantity($limit);
-			$rss_items = $rss->get_items(0, $maxitems); 
-		endif;
-		if ( isset($maxitems) && $maxitems == 0 ) echo '<li>No items.</li>';
-		else
-		// Loop through each feed item and display each item as a hyperlink.
-		foreach ( $rss_items as $item ) : ?>
-		<li>
-			<a href='<?php echo esc_url( $item->get_permalink() ); ?>'
-			title='<?php echo 'Posted '.$item->get_date('j F Y | g:i a'); ?>'>
-			<?php echo esc_html( $item->get_title() ); ?></a>
-		</li>
-		<?php endforeach;
-	}
 	
 /** it all ends here folks. */
