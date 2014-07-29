@@ -5,8 +5,8 @@ Tags: wp academy, wpacademy, move wordpress, copy wordpress, clone wordpress, in
 Author URI: http://wpacademy.com
 Plugin URI: http://wpacademy.com/software
 Requires at least: 3.0
-Tested up to: 3.5.2
-Stable tag: 2.1.6
+Tested up to: 3.9
+Stable tag: 2.1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,8 @@ released under the WTFPL http://sam.zoy.org/wtfpl/. Partial script with full cha
 Review FAQ's and Help Video at the [WP Clone FAQ Page](http://members.wpacademy.com/wpclone-faq "WP Clone FAQ")
 
 == Changelog ==
+= 2.1.7 - 2014-07-30 =
+* Changed: Admin page links.
 = 2.1.6 - 2013-07-07 =
 * Added: An option to exclude specific directories during backup.
 * Added: An option to only backup the database.

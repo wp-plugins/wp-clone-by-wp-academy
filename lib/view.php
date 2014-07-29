@@ -143,9 +143,10 @@ $result = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}wpclone ORDER BY id D
 
 		<ul>
 			<h2>WP Academy Resources</h2>
-			<li><a href="http://members.wpacademy.com/ww3.htm" target="_blank" title="WP Encyclopedia">Free WP Encyclopedia</a></li>
+                        <iframe src="//player.vimeo.com/video/98912458?title=0&amp;byline=0&amp;portrait=0" width="300" height="225" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			<li><a href="http://wpencyclopedia.com" target="_blank" title="WP Encyclopedia">WordPress Business Encyclopedia</a></li>
 			<li><a href="http://www.wpacademy.com/wordpress-training" target="_blank" title="WP Live">WP Live</a></li>
-			<li><a href="http://wpacademy.com/software#rtmp" target="_blank" title="RTMP Player Plugin">RTMP Player</a></li>
+			<li><a href="http://wpacademy.com/websites" target="_blank" title="WP Academy Websites">Websites</a></li>
 			<li><a href="http://www.wpacademy.com/hosting" target="_blank" title="Managed WordPress Hosting">Managed WordPress Hosting</a></li>
 		</ul>
 		
