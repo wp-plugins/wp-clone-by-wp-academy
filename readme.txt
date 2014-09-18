@@ -6,7 +6,7 @@ Author URI: http://wpacademy.com
 Plugin URI: http://wpacademy.com/software
 Requires at least: 3.0
 Tested up to: 3.9
-Stable tag: 2.1.7
+Stable tag: 2.1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,7 +31,7 @@ We have implemented exclude-directories on the backup, and also database-only ba
 
 = Support and Disclaimer =
 No WordPress backup plugin will work reliably on all hosts.  If you have any problems, try doing a "Database Only" backup (use "Advanced Options"), transfer the wp-content directory over with FTP, and then restore new site.  You should also deactivate and delete any page caching plugins (i.e. W3 Total Cache) before backup. 
-If you still have an issue, please post to the WordPress.org support forum where we support this plugin for free, and we'll respond on a  "best-effort" basis.  You can also try the Duplicator plugin http://wordpress.org/plugins/duplicator/ which works pretty good, but is not as fast as WP Clone to migrate sites; or use the manual method described here http://members.wpacademy.com/ww3.htm?moving-wordpress.htm
+If you still have an issue, please post to the WordPress.org support forum where we support this plugin for free, and we'll respond on a  "best-effort" basis.  You can also try the Duplicator plugin http://wordpress.org/plugins/duplicator/ or All-in-One WP Migration https://wordpress.org/plugins/all-in-one-wp-migration/, both of which work pretty good, but are not as fast as WP Clone to migrate sites; or use the manual method described here http://members.wpacademy.com/ww3.htm?moving-wordpress.htm
 
 = Please donate to support plugin development & ongoing support =
 WP Clone is provided free of charge to the community and supported through the plugin forums on WordPress.org. Please help defray our development expenses and help with support costs through the [Donations Page](http://wpacademy.com/software "Donations page")
@@ -56,6 +56,8 @@ released under the WTFPL http://sam.zoy.org/wtfpl/. Partial script with full cha
 Review FAQ's and Help Video at the [WP Clone FAQ Page](http://members.wpacademy.com/wpclone-faq "WP Clone FAQ")
 
 == Changelog ==
+= 2.1.8 - 2014-09-18 =
+* Updated: Readme description.
 = 2.1.7 - 2014-07-30 =
 * Changed: Admin page links.
 = 2.1.6 - 2013-07-07 =
