@@ -23,6 +23,12 @@ WP Clone is a superior solution to even commercial WordPress cloning plugins for
 * It fetches the site backup via your host&apos;s direct http connection, which saves you from needing to upload large files through your internet connection
 * It uses the WordPress internal zip archive function, which makes it compatible with virtually 100% of hosts that support WordPress (no special PHP libraries are required)
 
+<blockquote>
+= Update April 2015 =
+WP Clone fails to restore in about 10-20% of installations. This appears to be related to the hosting platform rather than the WordPress version. We are attempting to isolate this problem and determine the types of installations that fail in order to update the plugin.  Under no circumstances should the source (origin) site ever be damaged or destroyed.
+Feel free to leave a negative review and details of your failure on the support forum, but please be polite as we do not receive any remuneration for writing and supporting this plugin. We will investigate as we can. As a reminder also to never overwrite an installation for which you do not have a backup -- in normal usage this plugin would be used only to overwrite a new (or blank) WordPress installation.  Thanks -- WP Academy Support
+</blockquote>
+
 = Help Video =
 [youtube http://www.youtube.com/watch?v=xN5Ffhyn4Ao]
 
